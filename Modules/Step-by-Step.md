@@ -34,7 +34,13 @@ Linux 用エージェントをダウンロードおよびオンボードする�
 
 Portal右上のCloud Shell を起動します。
 ssh azureuser@マシンDNS名 でログインします。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Ubuntu1.png)
+
 コピーしたコマンドを実行します。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Ubuntu2.png)
+
 
 Portal に戻り、上の検索窓で Log Analytics と入力し、Log Analyticsワークスペースを選択します。中のワークスペースに進みます。
 
