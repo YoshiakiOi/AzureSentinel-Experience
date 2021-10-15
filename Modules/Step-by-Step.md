@@ -13,6 +13,9 @@
 * マシン DNS 名：sentinel-ubuntu<2桁の数字>.japaneast.cloudapp.azure.com
 * パスワード：p@ssword1rocks
 
+## 環境の概略図
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Environment1.png)
 
 # 作業開始
 
