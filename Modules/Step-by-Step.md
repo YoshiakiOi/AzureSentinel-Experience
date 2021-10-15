@@ -4,14 +4,14 @@
 
 ### Azure Portal
 
-* ユーザー名：ex<2桁の数字>@csg.yoo.tokyo
-* パスワード：p@ssword1rocks
+* ユーザー名：ex<2桁の数字>@***.onmicrosoft.com
+* パスワード：************
 
 ### Linux マシン
 
 * ユーザー名：azureuser
-* マシン DNS 名：sentinel-ubuntu<2桁の数字>.japaneast.cloudapp.azure.com
-* パスワード：p@ssword1rocks
+* マシン DNS 名：************.japaneast.cloudapp.azure.com
+* パスワード：************
 
 ## 環境の概略図
 
