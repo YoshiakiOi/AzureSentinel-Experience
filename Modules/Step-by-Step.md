@@ -21,6 +21,8 @@
 上記の資格情報で https://portal.azure.com にログインしてください。
 左のメニューからリソースグループを選択肢、２つのリソースグループが見えていることを確認してください。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Resource1.png)
+
 ## Azure Sentinel へ進む
 
 上の検索窓で、Sentinel と入力し、Sentinelをクリックします。中にあるワークスペースを選択します。
@@ -28,9 +30,14 @@
 ## Linux マシンからログを取る
 
 データコネクタータブから、Syslog のコネクターを見つけて開きます。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Syslog1.png)
+
 Install agent on a non-Azure Linux Machine を選び、リンクをクリックします。
 
-Linux 用エージェントをダウンロードおよびオンボードするのコマンドをコピーします。
+Linuxサーバータブを押し、Linux 用エージェントをダウンロードおよびオンボードするのコマンドをコピーします。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Syslog2.png)
 
 Portal右上のCloud Shell を起動します。
 ssh azureuser@マシンDNS名 でログインします。
@@ -46,6 +53,8 @@ Portal に戻り、上の検索窓で Log Analytics と入力し、Log Analytics
 
 エージェント構成から Syslog を選択し、ファシリティの追加で、authとauthprivを選択して適用します。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Ubuntu3.png)
+
 ## 脅威インテリジェンス情報を追加する
 
 Sentinel ワークスペースに戻り、データコネクターから、脅威インテリジェンス - TAXII を見つけて開きます。
@@ -58,6 +67,8 @@ Sentinel ワークスペースに戻り、データコネクターから、脅�
 * Password: guest
 * Import Indicators: At most one month old (review all available options)
 * Polling frequency: Once an minute (review all available options)
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Threat1.png)
 
 次の手順タブをクリックするとこれらを活用できるダッシュボードやクエリのテンプレートが多数あることが分かります。
 
@@ -89,15 +100,23 @@ OfficeActivity_CL
 | render barchart 
 ```
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Log1.png)
+
 ## 脅威検知ルールの追加
 
 ### テンプレートの有効化
 
 Sentinelワークスペースで、分析を選択します。規則のテンプレートから Rare RDP Connectionsを検索してみつけます。ルールの作成を押し、デフォルトの設定で作成します。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Analytics1.png)
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Analytics2.png)
+
 ### 自分自身の検知ルールの作成
 
 作成 > スケジュール済みクエリルールから、自分自身のルールを作ります。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Analytics3.png)
 
 * 名前：Malicious Inbox Rule - custom
 * 説明： This rule is detecting on delete all traces of phishing email from user mailboxes.
@@ -130,6 +149,8 @@ or SubjectOrBodyContainsWords has_any (Keywords)
 
 を選択します。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Analytics4.png)
+
 5分間隔＆過去12時間を検索するように設定し、抑制を12時間で有効化し進みます。レビューまで進み、作成します。
 
 ## インシデント管理
@@ -138,9 +159,13 @@ Sentinel ワークスペースに進み、今のカスタムルールから作�
 また、右のエンティティタブで情報が入っていることを確認します。
 コメントタブでは、「調査開始」と入れてみましょう。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Incident1.png)
+
 ## 調査
 
 調査ボタンを押すと、エンティティ情報のグラフが出てきます。Adeleの上にカーソルを合わせ、Related Alertsをクリックしてこのユーザーに紐づく別のアラートがあるか見てみましょう。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Incident2.png)
 
 また、Adeleをクリックしてタイムラインを見ると攻撃の流れが分かります。また、情報を選択し、すべての詳細を表示を押すと、Adeleについてまとめたユーザーページを開くことができます。UEBAが有効化されているとその情報も見ることができますが、本セッションでは見れません。
 
@@ -148,9 +173,13 @@ Sentinel ワークスペースに進み、今のカスタムルールから作�
 
 ワークスペースでオートメーションを開き、作成から「インシデントトリガーを使用したプレイブック」を選択します。
 
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Automation1.png)
+
 * プレイブック名：Playbook1
 
 として進みます。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Automation2.png)
 
 デザイナーでステップを作っていきます。色々なコネクターがあることを確認した後、すべてタブを選び「変数」と検索して出てきた「変数」をクリックします。アクションの中から、「変数を初期化する」を選びましょう。
 
@@ -166,12 +195,17 @@ Sentinel ワークスペースに進み、今のカスタムルールから作�
 
 を選択し、左上の保存を押します。
 
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Automation3.png)
+
 次に作成から、オートメーションを選びルールを作っていきます。
 
 * オートメーションルール名：Automation1
 * 条件 - 分析ルール名 - 次を含む - Malicious Inbox Rule - custom (複数あるときはすべて)
 * アクション - プレイブックの実行 - Playbook1
 ＊グレーアウトされているときは、アクセス許可を選択して追加します。
+
+![](https://github.com/YoshiakiOi/AzureSentinel-Experience/blob/main/Images/Automation4.png)
 
 分析のアクティブな規則から、さきほど作った Malicious Inbox Rule - custom を選択し編集を押します。アラートの抑制をOFFにして進み、インシデントの自動化に設定が入っていることを確認し、レビューへ進みます。その後保存を押します。
 
